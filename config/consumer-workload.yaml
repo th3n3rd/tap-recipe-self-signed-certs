@@ -1,3 +1,4 @@
+#@ load("@ytt:data", "data")
 ---
 apiVersion: carto.run/v1alpha1
 kind: Workload
@@ -17,10 +18,16 @@ spec:
         autoscaling.knative.dev/min-scale: "1"
   env:
     - name: encoding-api.uri
-      value: "http://provider.apps.svc.cluster.local"
+      value: #@ "https://provider." + data.values.namespace + "." + data.values.ingress.domain
   source:
     git:
       url: https://github.com/th3n3rd/tap-recipe-self-signed-certs.git
       ref:
         branch: main
     subPath: consumer
+  serviceClaims:
+    - name: provider-ca-cert
+      ref:
+        apiVersion: v1
+        kind: Secret
+        name: provider-ca-cert

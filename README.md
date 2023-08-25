@@ -7,6 +7,6 @@ for workloads.
 
 - [x] Setup two basic workloads, a consumer and a provider (for now independent)
 - [x] Integrates consumer and provider
-- [ ] Install a self-signed certificate for the provider
+- [x] Install a self-signed certificate for the provider
     - [x] Generate a new self-signed certificate an upgrade the provider workload from http to https
-    - [ ] Update the consumer workload in order to trust the CA used for the self-signed certificate
+    - [x] Update the consumer workload in order to trust the CA used for the self-signed certificate
