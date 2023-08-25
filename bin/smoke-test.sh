@@ -5,7 +5,7 @@ set -e
 echo "Running smoke tests"
 
 CONSUMER_URL=$(kubectl get service.serving consumer -o yaml | yq '.status.url' | tr -d '\n' )
-CONSUMER_EXPECTED="Hello World!"
+CONSUMER_EXPECTED="{\"original\":\"Hello World!\",\"encoded\":\"SGVsbG8gV29ybGQh\"}"
 CONSUMER_ACTUAL=$(curl -s -XGET "$CONSUMER_URL")
 if [ "$CONSUMER_ACTUAL" != "$CONSUMER_EXPECTED" ]; then
     echo "Smoke test failed for consumer: expected \"$CONSUMER_EXPECTED\" but was \"$CONSUMER_ACTUAL\"" 1>&2

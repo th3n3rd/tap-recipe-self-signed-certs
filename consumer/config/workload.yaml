@@ -15,6 +15,9 @@ spec:
     - name: annotations
       value:
         autoscaling.knative.dev/min-scale: "1"
+  env:
+    - name: encoding-api.uri
+      value: "http://provider.apps.svc.cluster.local"
   source:
     git:
       url: https://github.com/th3n3rd/tap-recipe-self-signed-certs.git
